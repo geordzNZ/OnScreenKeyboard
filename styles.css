@@ -5,7 +5,7 @@
 body{
     background-color: hsl(240, 3%,7%);
     margin: 0;
-    padding: 1rem;
+    padding: 1em;
     font-size: 2em;
 }
 
@@ -17,28 +17,49 @@ button{
 #keyboard-grid {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-auto-rows: 3em;
+    grid-auto-rows: 2em;
     gap: .25em;
 }
 
 .key{
     grid-column: span 2;
-    border-radius: .25rem;
+    border-radius: .25em;
     border: none;
     cursor: pointer;
-    background-color: hsl(240, 7%,22%);
+    background-color: hsl(
+        var(--hue, 200),
+        var(--saturation, 1%),
+        calc(var(--lightness-offset, 0%) + var(--lightness, 51%))
+    );
     color: offwhite;
     padding: 0;
     color: white;
     user-select: none;
 }
-.key:hover{
-    background-color: lawngreen;
-    color: hsl(240, 7%,22%);
+.key:hover, .key:focus {
+    --lightness-offset: 15%;
 }
+
 .spacer{
     grid-column: span 1;
 }
 .large{
     grid-column: span 3;
+    color: maroon;
+}
+
+.key.wrong{
+    --lightness: 23%;
+}
+
+.key.wrong-location {
+    --hue: 219;
+    --saturation: 96%;
+    --lightness: 60%;
+}
+
+.key.right{
+    --hue: 118;
+    --saturation: 44%;
+    --lightness: 44%;
 }
